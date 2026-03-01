@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD Anaa 21</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #fff5f8 0%, #ffd1dc 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Latar Belakang Kelopak Bunga */
+        .petal {
+            position: absolute;
+            background-color: #ffb7c5;
+            border-radius: 150% 0 150% 0;
+            z-index: 0;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        /* Kartu Utama - Dioptimalkan untuk HP */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px); /* Dukungan Safari/iOS */
+            padding: 2rem 1.5rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.15);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+            max-width: 350px; /* Lebar maksimal layar HP */
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem; /* Ukuran pas untuk layar HP */
+            color: #d81b60;
+            margin: 10px 0;
+        }
+
+        .age-container {
+            position: relative;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .age {
+            font-size: 4.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ad1457, #ff6090);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .sub-text {
+            color: #880e4f;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            padding: 0 10px;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #d81b60;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(216, 27, 96, 0.3);
+            width: 80%; /* Tombol lebar di HP agar mudah di-tap */
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Dekorasi tambahan */
+        .sparkle {
+            color: #fbc02d;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="petal-container"></div>
+
+    <div class="card">
+        <div class="sparkle">✨ 💖 ✨</div>
+        <p style="margin: 0; font-size: 0.8rem; letter-spacing: 2px; color: #ad1457;">HAPPY BIRTHDAY</p>
+        <h1>Anaa</h1>
+        
+        <div class="age-container">
+            <span class="age">21</span>
+        </div>
+        
+        <p class="sub-text">
+            Selamat memasuki babak baru yang lebih indah! Semoga di usia 21 ini, setiap langkahmu dipenuhi kebahagiaan dan keberkahan.
+        </p>
+        
+        <button class="btn" onclick="celebrate()">Buka Pesan Spesial</button>
+        <div style="margin-top: 20px; font-size: 1.2rem;">🌸🎂🎁</div>
+    </div>
+
+    <script>
+        function createPetal() {
+            const container = document.getElementById('petal-container');
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.width = Math.random() * 10 + 10 + 'px';
+            petal.style.height = petal.style.width;
+            petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+            
+            container.appendChild(petal);
+
+            setTimeout(() => {
+                petal.remove();
+            }, 5000);
+        }
+
+        // Interval pembuatan kelopak lebih lambat agar tidak berat di HP
+        setInterval(createPetal, 400);
+
+        function celebrate() {
+            // Animasi tambahan saat tombol di-klik
+            for(let i=0; i<30; i++) {
+                setTimeout(createPetal, i * 100);
+            }
+            alert("Happy 21st Birthday, Anaa! ✨\nSemoga hari ini se-istimewa dirimu!");
+        }
+    </script>
+</body>
+</html>
